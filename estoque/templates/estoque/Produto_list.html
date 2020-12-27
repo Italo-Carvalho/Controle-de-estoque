@@ -17,28 +17,28 @@
         <th>Data de entrega</th>
         <th>Validade</th>
         <th>Quantidade</th>
+        <th>Remover</th>
       </tr>
     </thead>
     <tbody>
       {% for Produto in produtos %}
         <tr class="item">
-        
           <td><a href="{% url 'Produto_change' Produto.pk %}">{{ Produto.codigo_produto.name }}</a></td>
           <td>{{ Produto.medida.name }}</td>
           <td>{{ Produto.data_de_entrega }}</td>
           <td>{{ Produto.validade }}</td>
           <td>{{ Produto.quantidade }}</td>
+          <td ><a class="btn btn-default" href="{% url 'produto_remove' Produto.pk %}"><img src="{% static 'svg/cancel.svg' %}" height="15" /></a></td>
 
 
         </tr>
       {% empty %}
         <tr>
-          <td colspan="4">No Produto in the database. <a href="{% url 'Produto_add' %}">Add the first Produto</a>.</td>
+          <td colspan="4">Sem nenhum produto no banco de dados. <a href="{% url 'Produto_add' %}">adicione seu primeiro produto</a>.</td>
         </tr>
       {% endfor %}
     </tbody>
-  </table>
-  <script src="{% static 'js/jquery-3.5.js' %}"></script>  
+  </table> 
   <script src="{% static 'js/jquery.datatables.js' %}"></script>   
   <script src="{% static 'js/bootstrap4-trables.js' %}"></script>  
 <script>

@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import ListView, CreateView, UpdateView
 from django.urls import reverse_lazy
 
@@ -28,4 +28,8 @@ def load_cities(request):
     cities = medida.objects.filter(codigo_produto_id=codigo_produto_id).order_by('name')
     return render(request, 'estoque/medida_dropdown_list_options.html', {'cities': cities})
 
+def produto_remove(request, pk):
+    produto = get_object_or_404(Produto, pk=pk)
+    produto.delete()
+    return redirect('Produto_changelist')
 
