@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+  <h2>Formulário de Protudo</h2>
+
+  <form method="post" id="ProdutoForm" data-cities-url="{% url 'ajax_load_cities' %}" novalidate>
+    {% csrf_token %}
+    <table>
+      {{ form.as_table }}
+    </table>
+    <button type="submit">Salvar</button>
+    <a href="{% url 'Produto_changelist' %}">Cancelar</a>
+  </form>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script>
+    $("#id_codigo_produto").change(function () {
+      var url = $("#ProdutoForm").attr("data-cities-url");
+      var codigo_produtoId = $(this).val();
+
+      $.ajax({
+        url: url,
+        data: {
+          'codigo_produto': codigo_produtoId
+        },
+        success: function (data) {
+          $("#id_medida").html(data);
+        }
+      });
+
+    });
+  </script>
+
+{% endblock %}
