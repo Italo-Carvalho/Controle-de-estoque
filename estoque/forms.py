@@ -1,10 +1,12 @@
 from django import forms
 from .models import Produto, medida
 
+
 class ProdutoForm(forms.ModelForm):
     class Meta:
         model = Produto
         fields = ('codigo_produto','medida','data_de_entrega','validade','quantidade')
+
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

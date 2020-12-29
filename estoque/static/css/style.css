@@ -13,3 +13,7 @@
 .errorlist~select {
   border-color: red;
 }
+
+#example_info {
+  display: none;
+}
